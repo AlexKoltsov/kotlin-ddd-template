@@ -1,6 +1,6 @@
 package com.akolts.ddd.template.domain.model
 
-import kotlinx.datetime.Clock
+import kotlinx.datetime.Clock.System.now
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -13,11 +13,16 @@ class User(
     var firstName: String?,
     var lastName: String?,
     val id: UUID = UUID.randomUUID(),
-    val registrationDate: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.UTC),
+    val registrationDate: LocalDateTime = now().toLocalDateTime(TimeZone.UTC),
     var lastLoginDate: LocalDateTime? = null,
+    var lastLogoutDate: LocalDateTime? = null,
 ) {
 
+    fun login() {
+        lastLoginDate = now().toLocalDateTime(TimeZone.UTC)
+    }
+
     fun logout() {
-        TODO("Not yet implemented")
+        lastLogoutDate = now().toLocalDateTime(TimeZone.UTC)
     }
 }

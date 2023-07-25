@@ -1,12 +1,19 @@
 package com.akolts.ddd.template.domain.port.inboud
 
 interface UserRegistrationUseCase {
-    fun register(command: UserRegistrationUseCaseCommand)
+    fun registerByEmail(command: EmailUserRegistrationCommand)
+    fun registerByPhone(command: PhoneUserRegistrationCommand)
 }
 
-data class UserRegistrationUseCaseCommand(
-    val email: String?,
-    val phone: String?,
+data class EmailUserRegistrationCommand(
+    val email: String,
+    val password: String,
+    val firstName: String? = null,
+    val lastName: String? = null,
+)
+
+data class PhoneUserRegistrationCommand(
+    val phone: String,
     val password: String,
     val firstName: String? = null,
     val lastName: String? = null,
