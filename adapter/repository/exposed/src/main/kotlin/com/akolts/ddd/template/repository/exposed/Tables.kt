@@ -27,5 +27,6 @@ object SessionInfos : Table(name = "session_info") {
 
     val registrationDate: Column<LocalDateTime> = datetime("registration_date")
     val lastLoginDate: Column<LocalDateTime?> = datetime("last_login_date").nullable()
+    val lastLogoutDate: Column<LocalDateTime?> = datetime("last_logout_date").nullable()
 }
 

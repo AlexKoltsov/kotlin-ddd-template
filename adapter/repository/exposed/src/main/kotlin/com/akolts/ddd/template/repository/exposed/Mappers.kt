@@ -13,6 +13,7 @@ fun ResultRow.toDomain() = User(
     lastName = this[UserProfiles.lastName],
     registrationDate = this[SessionInfos.registrationDate],
     lastLoginDate = this[SessionInfos.lastLoginDate],
+    lastLogoutDate = this[SessionInfos.lastLogoutDate],
 )
 
 fun <T> UpdateBuilder<T>.users(user: User) {
@@ -31,5 +32,6 @@ fun <T> UpdateBuilder<T>.userProfiles(user: User) {
 fun <T> UpdateBuilder<T>.sessionInfos(user: User) {
     this[SessionInfos.userId] = user.id
     this[SessionInfos.lastLoginDate] = user.lastLoginDate
+    this[SessionInfos.lastLogoutDate] = user.lastLogoutDate
     this[SessionInfos.registrationDate] = user.registrationDate
 }
