@@ -30,6 +30,30 @@ class ExposedUserRepository : UserRepository {
                 ?.toDomain()
         }
 
+    override fun findByEmail(email: String): User? =
+        transaction {
+            Users
+                .innerJoin(UserProfiles)
+                .innerJoin(SessionInfos)
+                .select {
+                    Users.email eq email
+                }
+                .singleOrNull()
+                ?.toDomain()
+        }
+
+    override fun findByPhone(phone: String): User? =
+        transaction {
+            Users
+                .innerJoin(UserProfiles)
+                .innerJoin(SessionInfos)
+                .select {
+                    Users.phone eq phone
+                }
+                .singleOrNull()
+                ?.toDomain()
+        }
+
     override fun findAll(): List<User> =
         transaction {
             Users

@@ -14,6 +14,9 @@ class InMemoryUseRepository : UserRepository {
 
     override fun findById(id: UUID): User? = map[id]
 
+    override fun findByEmail(email: String): User? = findAll().find { it.email == email }
+
+    override fun findByPhone(phone: String): User? = findAll().find { it.phone == phone }
 
     override fun findAll(): List<User> = map.values.toList()
 }
