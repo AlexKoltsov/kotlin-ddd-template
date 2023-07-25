@@ -5,6 +5,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":domain")
 include(":adapter:repository:in-memory")
 include(":adapter:repository:exposed")
+include(":adapter:notification")
 include(":app:console")
 
 dependencyResolutionManagement {
@@ -14,6 +15,7 @@ dependencyResolutionManagement {
             version("kotlinx-datetime", "0.4.0")
             version("exposed", "0.41.1")
             version("postgres", "42.6.0")
+            version("logback", "1.4.8")
 
             library("kotlinx-datetime", "org.jetbrains.kotlinx", "kotlinx-datetime").versionRef("kotlinx-datetime")
 
@@ -24,6 +26,8 @@ dependencyResolutionManagement {
             // wait for "exposed-json"
 
             library("postgres", "org.postgresql", "postgresql").versionRef("postgres")
+
+            library("logback", "ch.qos.logback", "logback-classic").versionRef("logback")
 
             bundle("exposed", listOf("exposed-core", "exposed-jdbc", "exposed-money", "exposed-kotlin-datetime"))
         }
