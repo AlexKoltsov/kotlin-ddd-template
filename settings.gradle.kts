@@ -3,6 +3,7 @@ rootProject.name = "kotlin-ddd-template"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":domain")
+include(":adapter:repository:in-memory")
 
 dependencyResolutionManagement {
     versionCatalogs {
