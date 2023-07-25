@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  psql:
+    image: postgres:${POSTGRES_VERSION}
+    environment:
+      POSTGRES_DB: ddd-template
+      POSTGRES_USER: ddd-template
+      POSTGRES_PASSWORD: ddd-template
+    ports:
+      - "5432:5432"

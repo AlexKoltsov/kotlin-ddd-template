@@ -7,16 +7,15 @@ import kotlinx.datetime.toLocalDateTime
 import java.util.*
 
 class User(
-    private val email: String?,
-    private val phone: String?,
-    private val password: String,
-    private var firstName: String?,
-    private var lastName: String?,
+    val email: String?,
+    val phone: String?,
+    val password: String,
+    var firstName: String?,
+    var lastName: String?,
+    val id: UUID = UUID.randomUUID(),
+    val registrationDate: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.UTC),
+    var lastLoginDate: LocalDateTime? = null,
 ) {
-
-    val id: UUID = UUID.randomUUID()
-    val registrationDate: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.UTC)
-    var lastLogin: LocalDateTime? = null
 
     fun logout() {
         TODO("Not yet implemented")
