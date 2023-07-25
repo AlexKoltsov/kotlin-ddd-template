@@ -16,6 +16,8 @@ class User(
     val registrationDate: LocalDateTime = now().toLocalDateTime(TimeZone.UTC),
     var lastLoginDate: LocalDateTime? = null,
     var lastLogoutDate: LocalDateTime? = null,
+    var emailConfirmed: Boolean = false,
+    var phoneConfirmed: Boolean = false,
 ) {
 
     fun login() {

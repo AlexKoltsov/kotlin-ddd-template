@@ -1,6 +1,6 @@
 package com.akolts.ddd.template.domain.usecase
 
-import com.akolts.ddd.template.domain.exception.WrongCredentials
+import com.akolts.ddd.template.domain.WrongCredentials
 import com.akolts.ddd.template.domain.port.inboud.EmailUserLoginCommand
 import com.akolts.ddd.template.domain.port.inboud.PhoneUserLoginCommand
 import com.akolts.ddd.template.domain.port.inboud.UserLoginUseCase

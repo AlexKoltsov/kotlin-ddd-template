@@ -27,7 +27,7 @@ class ExposedUserRepository : UserRepository {
                     Users.id eq id
                 }
                 .singleOrNull()
-                ?.toDomain()
+                ?.toUser()
         }
 
     override fun findByEmail(email: String): User? =
@@ -39,7 +39,7 @@ class ExposedUserRepository : UserRepository {
                     Users.email eq email
                 }
                 .singleOrNull()
-                ?.toDomain()
+                ?.toUser()
         }
 
     override fun findByPhone(phone: String): User? =
@@ -51,7 +51,7 @@ class ExposedUserRepository : UserRepository {
                     Users.phone eq phone
                 }
                 .singleOrNull()
-                ?.toDomain()
+                ?.toUser()
         }
 
     override fun findAll(): List<User> =
@@ -60,6 +60,6 @@ class ExposedUserRepository : UserRepository {
                 .innerJoin(UserProfiles)
                 .innerJoin(SessionInfos)
                 .selectAll()
-                .map { it.toDomain() }
+                .map { it.toUser() }
         }
 }

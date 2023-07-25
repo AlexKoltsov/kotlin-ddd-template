@@ -12,7 +12,7 @@ fun initializeExposed() {
         password = "ddd-template"
     )
     transaction {
-        SchemaUtils.drop(Users, UserProfiles, SessionInfos)
-        SchemaUtils.create(Users, UserProfiles, SessionInfos)
+        SchemaUtils.drop(Users, UserProfiles, SessionInfos, VerificationCodes)
+        SchemaUtils.create(Users, UserProfiles, SessionInfos, VerificationCodes)
     }
 }

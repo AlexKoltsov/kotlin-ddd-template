@@ -6,6 +6,7 @@ include(":domain")
 include(":adapter:repository:in-memory")
 include(":adapter:repository:exposed")
 include(":adapter:notification")
+include(":adapter:verification-code-provider")
 include(":app:console")
 
 dependencyResolutionManagement {
