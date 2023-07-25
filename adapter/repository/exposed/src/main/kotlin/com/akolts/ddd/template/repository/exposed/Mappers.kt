@@ -15,13 +15,21 @@ fun ResultRow.toDomain() = User(
     lastLoginDate = this[SessionInfos.lastLoginDate],
 )
 
-fun <T> UpdateBuilder<T>.fromDomain(user: User) {
+fun <T> UpdateBuilder<T>.users(user: User) {
     this[Users.id] = user.id
     this[Users.phone] = user.phone
     this[Users.email] = user.email
     this[Users.password] = user.password
+}
+
+fun <T> UpdateBuilder<T>.userProfiles(user: User) {
+    this[UserProfiles.userId] = user.id
     this[UserProfiles.firstName] = user.firstName
     this[UserProfiles.lastName] = user.lastName
+}
+
+fun <T> UpdateBuilder<T>.sessionInfos(user: User) {
+    this[SessionInfos.userId] = user.id
     this[SessionInfos.lastLoginDate] = user.lastLoginDate
     this[SessionInfos.registrationDate] = user.registrationDate
 }

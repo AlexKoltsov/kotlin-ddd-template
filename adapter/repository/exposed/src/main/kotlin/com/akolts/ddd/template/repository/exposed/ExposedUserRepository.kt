@@ -12,7 +12,9 @@ class ExposedUserRepository : UserRepository {
 
     override fun save(obj: User) =
         transaction {
-            Users.insert { it.fromDomain(obj) }
+            Users.insert { it.users(obj) }
+            UserProfiles.insert { it.userProfiles(obj) }
+            SessionInfos.insert { it.sessionInfos(obj) }
             return@transaction
         }
 
