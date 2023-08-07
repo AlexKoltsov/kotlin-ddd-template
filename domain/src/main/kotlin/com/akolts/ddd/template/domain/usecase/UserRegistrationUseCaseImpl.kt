@@ -1,5 +1,7 @@
 package com.akolts.ddd.template.domain.usecase
 
+import com.akolts.ddd.template.domain.UserByEmailAlreadyExistsException
+import com.akolts.ddd.template.domain.UserByPhoneAlreadyExistsException
 import com.akolts.ddd.template.domain.model.User
 import com.akolts.ddd.template.domain.model.VerificationCode
 import com.akolts.ddd.template.domain.port.inboud.EmailUserRegistrationCommand
@@ -16,6 +18,7 @@ class UserRegistrationUseCaseImpl(
 ) : UserRegistrationUseCase {
 
     override fun registerByEmail(command: EmailUserRegistrationCommand) {
+        if (userRepository.existsByEmail(command.email)) throw UserByEmailAlreadyExistsException(command.email)
         val user = with(command) {
             User(
                 email = email,
@@ -35,6 +38,7 @@ class UserRegistrationUseCaseImpl(
     }
 
     override fun registerByPhone(command: PhoneUserRegistrationCommand) {
+        if (userRepository.existsByPhone(command.phone)) throw UserByPhoneAlreadyExistsException(command.phone)
         val user = with(command) {
             User(
                 email = null,

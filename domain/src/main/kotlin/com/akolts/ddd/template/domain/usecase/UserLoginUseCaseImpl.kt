@@ -1,6 +1,9 @@
 package com.akolts.ddd.template.domain.usecase
 
+import com.akolts.ddd.template.domain.UserNotFoundByEmailException
+import com.akolts.ddd.template.domain.UserNotFoundByPhoneException
 import com.akolts.ddd.template.domain.WrongCredentials
+import com.akolts.ddd.template.domain.model.User
 import com.akolts.ddd.template.domain.port.inboud.EmailUserLoginCommand
 import com.akolts.ddd.template.domain.port.inboud.PhoneUserLoginCommand
 import com.akolts.ddd.template.domain.port.inboud.UserLoginUseCase
@@ -13,20 +16,18 @@ class UserLoginUseCaseImpl(
 ) : UserLoginUseCase {
 
     override fun loginByEmail(command: EmailUserLoginCommand) {
-        userRepository.findByEmail(command.email)
-            ?.let {
-                if (it.password != passwordEncoder.encode(command.password)) throw WrongCredentials("Wrong password")
-                it.login()
-                userRepository.save(it)
-            }
+        val user = userRepository.findByEmail(command.email) ?: throw UserNotFoundByEmailException(command.email)
+        login(user, command.password)
     }
 
     override fun loginByPhone(command: PhoneUserLoginCommand) {
-        userRepository.findByPhone(command.phone)
-            ?.let {
-                if (it.password != passwordEncoder.encode(command.password)) throw WrongCredentials("Wrong password")
-                it.login()
-                userRepository.save(it)
-            }
+        val user = userRepository.findByPhone(command.phone) ?: throw UserNotFoundByPhoneException(command.phone)
+        login(user, command.password)
+    }
+
+    private fun login(user: User, password: String) {
+        if (user.password != passwordEncoder.encode(password)) throw WrongCredentials("Wrong password")
+        user.login()
+        userRepository.save(user)
     }
 }
